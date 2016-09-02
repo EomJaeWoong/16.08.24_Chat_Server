@@ -16,7 +16,7 @@
 //	| PacketCode | CheckSum | MsgType | PayloadSize | * Payload * |
 //		1Byte        1Byte	   2Byte      2Byte        Size Byte     
 //
-//	checkSum - 각 MsgType, Payload 의 각 바이트 더하기 % 256
+//	checkSum - 각 MsgType, Payload 의 각 바이트 더하기 st% 256
 //
 //------------------------------------------------------
 

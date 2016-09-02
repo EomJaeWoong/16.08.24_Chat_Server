@@ -23,7 +23,13 @@ CNPacket::CNPacket(int iBufferSize)
 
 CNPacket::CNPacket(const CNPacket &clSrcPacket)
 {
-	
+	m_chpBuffer = clSrcPacket.GetBufferPtr();
+	m_iBufferSize = clSrcPacket.m_iBufferSize;
+
+	m_chpReadPos =  clSrcPacket.m_chpReadPos;
+	m_chpWritePos = clSrcPacket.m_chpWritePos;
+
+	m_iDataSize = clSrcPacket.GetDataSize();
 }
 
 CNPacket::~CNPacket()
@@ -286,6 +292,7 @@ int		CNPacket::GetData(unsigned char *bypDest, int iSize) const
 	{
 		bypDest[iCnt] = *m_chpReadPos;
 		m_chpReadPos++;
+		m_iDataSize--;
 	}
 
 	return iCnt;
@@ -305,6 +312,7 @@ int		CNPacket::PutData(unsigned char *bypSrc, int iSrcSize)
 	{
 		*m_chpWritePos = bypSrc[iCnt];
 		m_chpWritePos++;
+		m_iDataSize++;
 	}
 
 	return iCnt;

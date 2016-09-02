@@ -81,10 +81,12 @@
     <ClInclude Include="Chat_Server.h" />
     <ClInclude Include="NPacket.h" />
     <ClInclude Include="Protocol.h" />
+    <ClInclude Include="StreamQueue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NPacket.cpp" />
+    <ClCompile Include="StreamQueue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
