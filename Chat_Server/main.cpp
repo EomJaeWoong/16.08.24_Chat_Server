@@ -122,6 +122,9 @@ void NetWork()
 	}
 }
 
+/*--------------------------------------------------------------------------------------*/
+// client Accept
+/*--------------------------------------------------------------------------------------*/
 void AcceptClient()
 {
 	CLIENTIter iter;
@@ -194,6 +197,9 @@ void WriteProc(DWORD dwClientNo)
 	}
 }
 
+/*--------------------------------------------------------------------------------------*/
+// 받은 Packet 처리
+/*--------------------------------------------------------------------------------------*/
 void PacketProc(DWORD dwClientNo, stClient * pClient)
 {
 	st_PACKET_HEADER header;
@@ -264,17 +270,17 @@ BOOL packetProc_ReqLogin(stClient *pClient, CNPacket *cPacket)
 	CLIENTIter iter;
 	BYTE byResult = df_RESULT_LOGIN_OK;
 
-	WCHAR cNickname[15];
-	*cPacket >> cNickname;
+	WCHAR wNickName[dfNICK_MAX_LEN];
+	cPacket->GetData((BYTE *)&wNickName, dfNICK_MAX_LEN * 2);
 
 	for (iter = g_mClient.begin(); iter != g_mClient.end(); ++iter)
 	{
 		//중복 닉네임
-		if (0 == wcscmp(iter->second->cClientName, cNickname))
+		if (0 == wcscmp(iter->second->cClientName, wNickName))
 			byResult = df_RESULT_LOGIN_DNICK;
 	}
 
-	if (byResult == 1)	memcpy(pClient->cClientName, cNickname, dfNICK_MAX_LEN * 2);
+	if (byResult == 1)	memcpy(pClient->cClientName, wNickName, dfNICK_MAX_LEN * 2);
 	
 	return packetProc_ResLogin(pClient, byResult);
 }

@@ -137,7 +137,7 @@ void CNPacket::operator >> (unsigned int &iValue){ Get(iValue); }
 void CNPacket::operator >> (float &fValue){ Get(fValue); }
 void CNPacket::operator >> (__int64 &i64Value){ Get(i64Value); }
 void CNPacket::operator >> (unsigned __int64 &i64Value){ Get(i64Value); }
-void CNPacket::operator >> (WCHAR *szString){ Get(szString, wcslen(szString)); }
+void CNPacket::operator >> (WCHAR *szString){ Get(szString, sizeof(szString)); }
 
 //////////////////////////////////////////////////////////////////////////
 // 넣기.	각 변수 타입마다 모두 만듬.
